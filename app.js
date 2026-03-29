@@ -12,6 +12,15 @@ const citiesGrid = document.getElementById('citiesGrid');
 const tabButtons = document.querySelectorAll('.tab-btn');
 const chartCanvas = document.getElementById('priceChart');
 
+// Event delegation for city cards
+citiesGrid.addEventListener('click', (e) => {
+    const card = e.target.closest('.city-card');
+    if (card && !e.target.closest('.favorite-btn')) {
+        const cityId = parseInt(card.dataset.cityId);
+        showDetails(cityId);
+    }
+});
+
 // Event listeners
 searchInput.addEventListener('input', (e) => {
     currentSearch = e.target.value.toLowerCase();
@@ -91,7 +100,7 @@ function renderCities() {
     }
 
     citiesGrid.innerHTML = filtered.map(city => `
-        <div class="city-card" onclick="showDetails(${city.id})">
+        <div class="city-card" data-city-id="${city.id}">
             <div class="city-header">
                 <span class="city-name">${city.name}</span>
                 <button class="favorite-btn ${favorites.includes(city.id) ? 'favorited' : ''}"
@@ -199,12 +208,20 @@ function updateChart(data) {
 
 // Vis detaljer modal
 function showDetails(cityId) {
+    console.log('showDetails kaldt med cityId:', cityId);
     const city = citiesData.find(c => c.id === cityId);
-    if (!city) return;
+    console.log('By fundet:', city);
+    
+    if (!city) {
+        console.error('By ikke fundet');
+        return;
+    }
 
     const modal = document.getElementById('detailsModal');
     const modalTitle = document.getElementById('modalTitle');
     const schoolsList = document.getElementById('schoolsList');
+
+    console.log('Modal element:', modal);
 
     modalTitle.textContent = `${city.name} - Kørekortsskoler`;
 
@@ -221,6 +238,7 @@ function showDetails(cityId) {
     `).join('');
 
     modal.classList.add('active');
+    console.log('Modal classe ændret');
 }
 
 // Luk modal
