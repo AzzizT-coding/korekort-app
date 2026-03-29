@@ -214,7 +214,7 @@ function showDetails(cityId) {
 
     console.log('Modal element:', modal);
 
-    modalTitle.textContent = `${city.name} - Kørekortsskoler`;
+    modalTitle.textContent = `${city.name} - Køreskoler`;
 
     schoolsList.innerHTML = city.schools.map(school => `
         <div class="school-item">

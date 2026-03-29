@@ -35,7 +35,7 @@ const citiesData = [
         schools: [
             { name: "Køreskoleklubben", price: 14995, rating: 4.5 },
             { name: "Martins Køreakademi", price: 14995, rating: 4.3 },
-            { name: "Lisbeth Køreskole", price: 15000, rating: 4.0 },
+            { name: "Lisbeths Køreskole", price: 15000, rating: 4.0 },
             { name: "City Køreskolen", price: 15900, rating: 4.2 },
             { name: "R2 Drive", price: 16499, rating: 4.4 },
             { name: "Nordbyens Køreskole", price: 17200, rating: 3.9 },
