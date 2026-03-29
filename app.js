@@ -91,11 +91,11 @@ function renderCities() {
     }
 
     citiesGrid.innerHTML = filtered.map(city => `
-        <div class="city-card">
+        <div class="city-card" onclick="showDetails(${city.id})">
             <div class="city-header">
                 <span class="city-name">${city.name}</span>
                 <button class="favorite-btn ${favorites.includes(city.id) ? 'favorited' : ''}"
-                        onclick="toggleFavorite(${city.id})">
+                        onclick="event.stopPropagation(); toggleFavorite(${city.id})">
                     ${favorites.includes(city.id) ? '❤️' : '🤍'}
                 </button>
             </div>
@@ -195,6 +195,46 @@ function updateChart(data) {
             }
         }
     });
+}
+
+// Vis detaljer modal
+function showDetails(cityId) {
+    const city = citiesData.find(c => c.id === cityId);
+    if (!city) return;
+
+    const modal = document.getElementById('detailsModal');
+    const modalTitle = document.getElementById('modalTitle');
+    const schoolsList = document.getElementById('schoolsList');
+
+    modalTitle.textContent = `${city.name} - Kørekortsskoler`;
+
+    schoolsList.innerHTML = city.schools.map(school => `
+        <div class="school-item">
+            <div>
+                <div class="school-name">${school.name}</div>
+                <div class="school-rating">⭐ ${school.rating}</div>
+            </div>
+            <div class="school-price ${school.price === null ? 'no-price' : ''}">
+                ${school.price === null ? 'Ring for pris' : school.price.toLocaleString('da-DK') + ' DKK'}
+            </div>
+        </div>
+    `).join('');
+
+    modal.classList.add('active');
+}
+
+// Luk modal
+function closeModal() {
+    const modal = document.getElementById('detailsModal');
+    modal.classList.remove('active');
+}
+
+// Luk modal ved klik uden for indhold
+window.onclick = function(event) {
+    const modal = document.getElementById('detailsModal');
+    if (event.target === modal) {
+        closeModal();
+    }
 }
 
 // Initialiser app
