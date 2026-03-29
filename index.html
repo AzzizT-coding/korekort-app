@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kørekort Pris Sammenligning</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🏍️ Kørekort Pris Sammenligning</h1>
+            <p>Se gennemsnitspriser på kørekort i forskellige byer</p>
+        </header>
+
+        <div class="controls">
+            <input type="text" id="searchInput" placeholder="Søg efter by..." class="search-box">
+            <select id="sortSelect" class="sort-select">
+                <option value="name">Sorter efter by (A-Z)</option>
+                <option value="price-asc">Sorter efter pris (lavest først)</option>
+                <option value="price-desc">Sorter efter pris (højest først)</option>
+            </select>
+            <button id="favoritesBtn" class="tab-btn active" data-tab="all">Alle byer</button>
+            <button id="showFavoritesBtn" class="tab-btn" data-tab="favorites">❤️ Mine favoritter</button>
+        </div>
+
+        <div id="chartContainer" class="chart-container">
+            <canvas id="priceChart"></canvas>
+        </div>
+
+        <div id="citiesGrid" class="cities-grid">
+            <!-- Bliver fyldt af JavaScript -->
+        </div>
+    </div>
+
+    <script src="data.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
