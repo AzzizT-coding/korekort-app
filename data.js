@@ -1,99 +1,102 @@
-// Kørekort priser i forskellige danske byer (gennemsnitspriser i DKK)
+// Kørekort priser fra forskellige kørekortsskoler i danske byer
+// BEMÆRK: Opdater priser og skoler med de rigtige data fra deres hjemmesider
 const citiesData = [
     {
         id: 1,
-        name: "København",
-        price: 4950,
-        region: "Hovedstaden",
-        schools: 12,
-        avgRating: 4.5
+        name: "Aarhus",
+        region: "Midtjylland",
+        schools: [
+            { name: "Aarhus Køreskole", price: 4200, rating: 4.3 },
+            { name: "Midtjyllands Kørekort", price: 4100, rating: 4.2 }
+        ]
     },
     {
         id: 2,
-        name: "Aarhus",
-        price: 4200,
-        region: "Midtjylland",
-        schools: 8,
-        avgRating: 4.3
+        name: "Odense",
+        region: "Fyn",
+        schools: [
+            { name: "Odense Køreskole", price: 3800, rating: 4.2 },
+            { name: "Fyn Kørekort", price: 3900, rating: 4.1 }
+        ]
     },
     {
         id: 3,
-        name: "Odense",
-        price: 3800,
-        region: "Fyn",
-        schools: 6,
-        avgRating: 4.2
+        name: "Aalborg",
+        region: "Nordjylland",
+        schools: [
+            { name: "Aalborg Køreskole", price: 3950, rating: 4.1 },
+            { name: "Nordjyllands Kørekort", price: 4050, rating: 4.0 }
+        ]
     },
     {
         id: 4,
-        name: "Aalborg",
-        price: 3950,
-        region: "Nordjylland",
-        schools: 5,
-        avgRating: 4.1
+        name: "Randers",
+        region: "Midtjylland",
+        schools: [
+            { name: "Køreskoleklubben", price: 14995, rating: 4.5 },
+            { name: "Martins Køreakademi", price: 14995, rating: 4.3 },
+            { name: "Lisbeth Køreskole", price: 15000, rating: 4.0 },
+            { name: "City Køreskolen", price: 15900, rating: 4.2 },
+            { name: "R2 Drive", price: 16499, rating: 4.4 },
+            { name: "Nordbyens Køreskole", price: 17200, rating: 3.9 },
+            { name: "Din og Min Køreskole", price: 17600, rating: 4.1 },
+            { name: "Wolff's Køreskole", price: 18000, rating: 3.8 }
+        ]
     },
     {
         id: 5,
-        name: "Randers",
-        price: 3650,
-        region: "Midtjylland",
-        schools: 4,
-        avgRating: 4.0
+        name: "Esbjerg",
+        region: "Syddanmark",
+        schools: [
+            { name: "Esbjerg Køreskole", price: 3700, rating: 3.9 }
+        ]
     },
     {
         id: 6,
-        name: "Esbjerg",
-        price: 3700,
-        region: "Syddanmark",
-        schools: 3,
-        avgRating: 3.9
+        name: "Silkeborg",
+        region: "Midtjylland",
+        schools: [
+            { name: "Silkeborg Køreskole", price: 3550, rating: 4.2 }
+        ]
     },
     {
         id: 7,
-        name: "Silkeborg",
-        price: 3550,
+        name: "Viborg",
         region: "Midtjylland",
-        schools: 3,
-        avgRating: 4.2
+        schools: [
+            { name: "Viborg Køreskole", price: 3450, rating: 4.0 }
+        ]
     },
     {
         id: 8,
-        name: "Viborg",
-        price: 3450,
-        region: "Midtjylland",
-        schools: 2,
-        avgRating: 4.0
+        name: "Vejle",
+        region: "Syddanmark",
+        schools: [
+            { name: "Vejle Køreskole", price: 3800, rating: 4.1 }
+        ]
     },
     {
         id: 9,
-        name: "Vejle",
-        price: 3800,
-        region: "Syddanmark",
-        schools: 4,
-        avgRating: 4.1
+        name: "Roskilde",
+        region: "Hovedstaden",
+        schools: [
+            { name: "Roskilde Køreskole", price: 4100, rating: 4.2 }
+        ]
     },
     {
         id: 10,
-        name: "Roskilde",
-        price: 4100,
-        region: "Hovedstaden",
-        schools: 5,
-        avgRating: 4.2
+        name: "Svendborg",
+        region: "Fyn",
+        schools: [
+            { name: "Svendborg Køreskole", price: 3600, rating: 4.0 }
+        ]
     },
     {
         id: 11,
-        name: "Svendborg",
-        price: 3600,
-        region: "Fyn",
-        schools: 2,
-        avgRating: 4.0
-    },
-    {
-        id: 12,
         name: "Kolding",
-        price: 3750,
         region: "Syddanmark",
-        schools: 3,
-        avgRating: 4.1
+        schools: [
+            { name: "Kolding Køreskole", price: 3750, rating: 4.1 }
+        ]
     }
 ];
