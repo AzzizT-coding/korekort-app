@@ -32,6 +32,21 @@ tabButtons.forEach(btn => {
     });
 });
 
+// Beregn laveste pris for en by
+function getLowestPrice(city) {
+    if (!city.schools || city.schools.length === 0) return Infinity;
+    const prices = city.schools.map(s => s.price).filter(p => p !== null);
+    return prices.length > 0 ? Math.min(...prices) : Infinity;
+}
+
+// Beregn gennemsnitspris for en by
+function getAveragePrice(city) {
+    if (!city.schools || city.schools.length === 0) return 0;
+    const prices = city.schools.map(s => s.price).filter(p => p !== null);
+    if (prices.length === 0) return 0;
+    return Math.round(prices.reduce((a, b) => a + b, 0) / prices.length);
+}
+
 // Filtrer og sorter byer
 function getFilteredCities() {
     let filtered = citiesData;
@@ -54,9 +69,9 @@ function getFilteredCities() {
             case 'name':
                 return a.name.localeCompare(b.name);
             case 'price-asc':
-                return a.price - b.price;
+                return getLowestPrice(a) - getLowestPrice(b);
             case 'price-desc':
-                return b.price - a.price;
+                return getLowestPrice(b) - getLowestPrice(a);
             default:
                 return 0;
         }
@@ -85,7 +100,7 @@ function renderCities() {
                 </button>
             </div>
             <div class="city-info">
-                <div class="price">${city.price.toLocaleString('da-DK')} DKK</div>
+                <div class="price">${getAveragePrice(city).toLocaleString('da-DK')} DKK</div>
                 <div class="price-label">Gennemsnitspris</div>
             </div>
             <div class="city-details">
@@ -95,11 +110,11 @@ function renderCities() {
                 </div>
                 <div class="detail">
                     <span class="detail-label">Skoler</span>
-                    <span>${city.schools}</span>
+                    <span>${city.schools.length}</span>
                 </div>
                 <div class="detail">
-                    <span class="detail-label">Rating</span>
-                    <span>⭐ ${city.avgRating}</span>
+                    <span class="detail-label">Laveste pris</span>
+                    <span>${getLowestPrice(city) === Infinity ? 'N/A' : getLowestPrice(city).toLocaleString('da-DK') + ' DKK'}</span>
                 </div>
             </div>
         </div>
@@ -133,8 +148,8 @@ function updateChart(data) {
     const chartData = {
         labels: data.map(city => city.name),
         datasets: [{
-            label: 'Pris (DKK)',
-            data: data.map(city => city.price),
+            label: 'Laveste pris (DKK)',
+            data: data.map(city => getLowestPrice(city)),
             backgroundColor: 'rgba(102, 126, 234, 0.6)',
             borderColor: 'rgba(102, 126, 234, 1)',
             borderWidth: 2,
