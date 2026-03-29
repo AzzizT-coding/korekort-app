@@ -12,15 +12,6 @@ const citiesGrid = document.getElementById('citiesGrid');
 const tabButtons = document.querySelectorAll('.tab-btn');
 const chartCanvas = document.getElementById('priceChart');
 
-// Event delegation for city cards
-citiesGrid.addEventListener('click', (e) => {
-    const card = e.target.closest('.city-card');
-    if (card && !e.target.closest('.favorite-btn')) {
-        const cityId = parseInt(card.dataset.cityId);
-        showDetails(cityId);
-    }
-});
-
 // Event listeners
 searchInput.addEventListener('input', (e) => {
     currentSearch = e.target.value.toLowerCase();
@@ -100,11 +91,11 @@ function renderCities() {
     }
 
     citiesGrid.innerHTML = filtered.map(city => `
-        <div class="city-card" data-city-id="${city.id}">
+        <div class="city-card" onclick="showDetails(${city.id}); return false;">
             <div class="city-header">
                 <span class="city-name">${city.name}</span>
                 <button class="favorite-btn ${favorites.includes(city.id) ? 'favorited' : ''}"
-                        onclick="event.stopPropagation(); toggleFavorite(${city.id})">
+                        onclick="event.stopPropagation(); toggleFavorite(${city.id}); return false;">
                     ${favorites.includes(city.id) ? '❤️' : '🤍'}
                 </button>
             </div>
